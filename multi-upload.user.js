@@ -3,7 +3,7 @@
 // @namespace   Violentmonkey Scripts
 // @match       https://*.instructure.com/courses/*/assignments/*
 // @grant       none
-// @version     1.0.2
+// @version     1.0.3
 // @author      Levi_OP
 // @description Upload multiple files to a canvas assignment without the hassle.
 // ==/UserScript==
@@ -23,10 +23,10 @@ input.addEventListener("change", () => {
     let inputs = document.querySelectorAll(".submission_attachment:not([id])");
     if (inputs.length < files.length) {
         for (let i = inputs.length; i < files.length; i++) document.querySelector(".Button.Button--link.add_another_file_link").click();
-        for (const elm of document.querySelectorAll(".submission_attachment:not([id])")) elm.children[0].children[0].click();
     } else if (inputs.length > files.length) {
         for (let i = files.length; i < inputs.length; i++) document.querySelectorAll(".submission_attachment:not([id])")[0].children[1].click();
     }
+    for (const elm of document.querySelectorAll(".submission_attachment:not([id])")) elm.children[0].children[0].click();
     inputs = document.querySelectorAll(".submission_attachment:not([id])");
     for (let i = 0; i < files.length; i++) {
         const file = new DataTransfer();
